@@ -92,7 +92,8 @@ export default {
       }
     },
     negate(){
-      this.result = (parseFloat(this.result) * -1).toString();
+      if (this.result != '')
+        this.result = (parseFloat(this.result) * -1).toString();
     }
   }
 }
