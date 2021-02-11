@@ -1,29 +1,27 @@
 <template>
   <div class="container">
     <div class="calc">
-      <div class="text">
-        3.14
-      </div>
+      <input v-model="result" class="text" placeholder="0" readonly>
 
       <div class="buttons">
-        <button class="calc__button">C</button>
-        <button class="calc__button">Back</button>
+        <button @click="clear()" class="calc__button">C</button>
+        <button @click="backspace()" class="calc__button">Back</button>
         <button class="calc__button">/</button>
         <button class="calc__button">*</button>
-        <button class="calc__button">7</button>
-        <button class="calc__button">8</button>
-        <button class="calc__button">9</button>
+        <button @click="insert('7')" class="calc__button">7</button>
+        <button @click="insert('8')" class="calc__button">8</button>
+        <button @click="insert('9')" class="calc__button">9</button>
         <button class="calc__button">-</button>
-        <button class="calc__button">4</button>
-        <button class="calc__button">6</button>
-        <button class="calc__button">7</button>
-        <button class="calc__button plus__button">+</button>
-        <button class="calc__button">1</button>
-        <button class="calc__button">2</button>
-        <button class="calc__button">3</button>
+        <button @click="insert('4')" class="calc__button">4</button>
+        <button @click="insert('5')" class="calc__button">5</button>
+        <button @click="insert('6')" class="calc__button">6</button>
+        <button class="calc__button">+</button>
+        <button @click="insert('1')" class="calc__button">1</button>
+        <button @click="insert('2')" class="calc__button">2</button>
+        <button @click="insert('3')" class="calc__button">3</button>
         <button class="calc__button equals__button">=</button>
-        <button class="calc__button">0</button>
-        <button class="calc__button">.</button>
+        <button @click="insert('0')" class="calc__button zero__button">0</button>
+        <button @click="insert('.')" class="calc__button">.</button>
       </div>
     </div>
   </div>
@@ -31,7 +29,23 @@
 
 <script>
 export default {
-  name: 'HelloWorld'
+  name: 'HelloWorld',
+  data(){
+    return {
+      result: ''
+    }
+  },
+  methods: {
+    insert(char_to_insert){
+      this.result += char_to_insert
+    },
+    clear(){
+      this.result = '';
+    },
+    backspace(){
+      this.result = this.result.slice(0, -1);
+    }
+  }
 }
 </script>
 
@@ -54,15 +68,16 @@ export default {
   width: 231px;
   margin: 0 auto;
   padding: 10px;
-  text-align: right;
 }
 
 .text{
   width: 100%;
-  border: 1px solid black;
+  border: none;
+  text-align: right;
   border-radius: 1px;
   margin-bottom: 12px;
   padding: 10px;
+  font-size: 14pt;
   background-color: white;
 }
 
@@ -90,7 +105,7 @@ export default {
   grid-row-end: 6;
 }
 
-.plus__button{
+.zero__button{
   grid-row-start: 5;
   grid-column-start: 1;
   grid-column-end: 3;
