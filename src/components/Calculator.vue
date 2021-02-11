@@ -6,20 +6,20 @@
       <div class="buttons">
         <button @click="clear()" class="calc__button">C</button>
         <button @click="backspace()" class="calc__button">Back</button>
-        <button class="calc__button">/</button>
-        <button class="calc__button">*</button>
+        <button @click="set_operation('/')" class="calc__button">/</button>
+        <button @click="set_operation('*')" class="calc__button">*</button>
         <button @click="insert('7')" class="calc__button">7</button>
         <button @click="insert('8')" class="calc__button">8</button>
         <button @click="insert('9')" class="calc__button">9</button>
-        <button class="calc__button">-</button>
+        <button @click="set_operation('-')" class="calc__button">-</button>
         <button @click="insert('4')" class="calc__button">4</button>
         <button @click="insert('5')" class="calc__button">5</button>
         <button @click="insert('6')" class="calc__button">6</button>
-        <button class="calc__button">+</button>
+        <button @click="set_operation('+')" class="calc__button">+</button>
         <button @click="insert('1')" class="calc__button">1</button>
         <button @click="insert('2')" class="calc__button">2</button>
         <button @click="insert('3')" class="calc__button">3</button>
-        <button class="calc__button equals__button">=</button>
+        <button @click="calc()" class="calc__button equals__button">=</button>
         <button @click="insert('0')" class="calc__button zero__button">0</button>
         <button @click="insert('.')" class="calc__button">.</button>
       </div>
@@ -39,6 +39,11 @@ export default {
     }
   },
   methods: {
+    set_operation(operation){
+      this.operation = operation;
+      this.operator_a = this.result;
+      this.result = '';
+    },
     insert(char_to_insert){
       if (char_to_insert == '.'){
         if (this.result.includes('.')){
@@ -55,6 +60,25 @@ export default {
     },
     backspace(){
       this.result = this.result.slice(0, -1);
+    },
+    calc(){
+      if (this.result != ''){
+        this.operator_b = this.result;
+        switch (this.operation){
+          case '+':
+            this.result = (parseFloat(this.operator_a) + parseFloat(this.operator_b)).toString();
+            break;
+          case '-':
+            this.result = (parseFloat(this.operator_a) - parseFloat(this.operator_b)).toString();
+            break;
+          case '*':
+            this.result = (parseFloat(this.operator_a) * parseFloat(this.operator_b)).toString();
+            break;
+          case '/':
+            this.result = (parseFloat(this.operator_a) / parseFloat(this.operator_b)).toString();
+            break;
+        }
+      }
     }
   }
 }
