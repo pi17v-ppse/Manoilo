@@ -20,7 +20,7 @@
         <button @click="insert('2')" class="calc__button">2</button>
         <button @click="insert('3')" class="calc__button">3</button>
         <button @click="calc()" class="calc__button equals__button">=</button>
-        <button class="calc__button">+/-</button>
+        <button @click="negate()" class="calc__button">+/-</button>
         <button @click="insert('0')" class="calc__button">0</button>
         <button @click="insert('.')" class="calc__button">.</button>
       </div>
@@ -90,6 +90,9 @@ export default {
             break;
         }
       }
+    },
+    negate(){
+      this.result = (parseFloat(this.result) * -1).toString();
     }
   }
 }
