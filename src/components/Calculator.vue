@@ -45,15 +45,25 @@ export default {
       this.result = '';
     },
     insert(char_to_insert){
-      if (char_to_insert == '.'){
-        if (this.result.includes('.')){
-          char_to_insert = '';
-        }
-        else if (this.result == ''){
-          char_to_insert = '0' + char_to_insert;
-        }
+      switch (char_to_insert){
+        case '.':
+          if (!this.result.includes('.')){
+            if (this.result == '')
+              char_to_insert = '0' + char_to_insert;
+            this.result += char_to_insert;
+          }
+          break;
+        case '0':
+          if (this.result != '0')
+            this.result += char_to_insert;
+          break;
+        default:
+          if (this.result == '0')
+            this.result = char_to_insert;
+          else
+            this.result += char_to_insert;
+          break;
       }
-      this.result += char_to_insert
     },
     clear(){
       this.result = '';
