@@ -20,7 +20,8 @@
         <button @click="insert('2')" class="calc__button">2</button>
         <button @click="insert('3')" class="calc__button">3</button>
         <button @click="calc()" class="calc__button equals__button">=</button>
-        <button @click="insert('0')" class="calc__button zero__button">0</button>
+        <button class="calc__button">+/-</button>
+        <button @click="insert('0')" class="calc__button">0</button>
         <button @click="insert('.')" class="calc__button">.</button>
       </div>
     </div>
@@ -148,11 +149,5 @@ export default {
   grid-column-start: 4;
   grid-row-start: 4;
   grid-row-end: 6;
-}
-
-.zero__button{
-  grid-row-start: 5;
-  grid-column-start: 1;
-  grid-column-end: 3;
 }
 </style>
