@@ -5,7 +5,7 @@
 
       <div class="buttons">
         <button @click="clear()" class="calc__button">C</button>
-        <button @click="backspace()" class="calc__button">Back</button>
+        <button @click="backspace()" class="calc__button fas fa-backspace"></button>
         <button @click="set_operation('/')" class="calc__button">/</button>
         <button @click="set_operation('*')" class="calc__button">*</button>
         <button @click="insert('7')" class="calc__button">7</button>
@@ -147,6 +147,7 @@ export default {
 
 .calc__button:hover{
   cursor: pointer;
+  background-color: #6f838d;
 }
 
 .equals__button{
