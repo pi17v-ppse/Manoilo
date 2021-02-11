@@ -32,11 +32,22 @@ export default {
   name: 'HelloWorld',
   data(){
     return {
-      result: ''
+      result: '',
+      operation: null,
+      operator_a: null,
+      operator_b: null
     }
   },
   methods: {
     insert(char_to_insert){
+      if (char_to_insert == '.'){
+        if (this.result.includes('.')){
+          char_to_insert = '';
+        }
+        else if (this.result == ''){
+          char_to_insert = '0' + char_to_insert;
+        }
+      }
       this.result += char_to_insert
     },
     clear(){
