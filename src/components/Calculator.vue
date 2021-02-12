@@ -101,7 +101,11 @@ export default {
         this.result = (parseFloat(this.result) * -1).toString();
     },
     percentage(){
-      this.result = (parseFloat(this.result) / 100).toString();
+      if (this.result != '')
+        if (this.operation == '+' || this.operation == '-')
+          this.result = (parseFloat(this.operator_a) * (parseFloat(this.result) / 100)).toString();
+        else
+          this.result = (parseFloat(this.result) / 100).toString();
     }
   }
 }
