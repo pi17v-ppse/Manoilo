@@ -8,9 +8,9 @@
         <button class="calc__button">CE</button>
         <button @click="clear()" class="calc__button">C</button>
         <button @click="backspace()" class="calc__button fas fa-backspace"></button>
-        <button class="calc__button">1/x</button>
-        <button class="calc__button">pow</button>
-        <button class="calc__button fas fa-square-root-alt"></button>
+        <button @click="dividing()" class="calc__button">1/x</button>
+        <button @click="power()" class="calc__button">pow</button>
+        <button @click="square()" class="calc__button fas fa-square-root-alt"></button>
         <button @click="set_operation('/')" class="calc__button">/</button>
         <button @click="insert('7')" class="calc__button">7</button>
         <button @click="insert('8')" class="calc__button">8</button>
@@ -99,6 +99,15 @@ export default {
     negate(){
       if (this.result != '')
         this.result = (parseFloat(this.result) * -1).toString();
+    },
+    power(){
+      this.result = (parseFloat(this.result) * parseFloat(this.result)).toString();
+    },
+    dividing(){
+      this.result = (1 / parseFloat(this.result)).toString();
+    },
+    square(){
+      this.result = Math.sqrt(parseFloat(this.result)).toString();
     }
   }
 }
