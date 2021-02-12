@@ -5,7 +5,7 @@
 
       <div class="buttons">
         <button class="calc__button">%</button>
-        <button class="calc__button">CE</button>
+        <button @click="clear()" class="calc__button">CE</button>
         <button @click="clear()" class="calc__button">C</button>
         <button @click="backspace()" class="calc__button fas fa-backspace"></button>
         <button @click="dividing()" class="calc__button">1/x</button>
@@ -101,13 +101,16 @@ export default {
         this.result = (parseFloat(this.result) * -1).toString();
     },
     power(){
-      this.result = (parseFloat(this.result) * parseFloat(this.result)).toString();
+      if (this.result != '')
+        this.result = (parseFloat(this.result) * parseFloat(this.result)).toString();
     },
     dividing(){
-      this.result = (1 / parseFloat(this.result)).toString();
+      if (this.result != '')
+        this.result = (1 / parseFloat(this.result)).toString();
     },
     square(){
-      this.result = Math.sqrt(parseFloat(this.result)).toString();
+      if (this.result != '')
+        this.result = Math.sqrt(parseFloat(this.result)).toString();
     }
   }
 }
