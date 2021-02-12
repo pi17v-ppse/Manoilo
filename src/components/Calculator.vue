@@ -4,25 +4,30 @@
       <input v-model="result" class="text" placeholder="0" readonly>
 
       <div class="buttons">
+        <button class="calc__button">%</button>
+        <button class="calc__button">CE</button>
         <button @click="clear()" class="calc__button">C</button>
         <button @click="backspace()" class="calc__button fas fa-backspace"></button>
+        <button class="calc__button">1/x</button>
+        <button class="calc__button">pow</button>
+        <button class="calc__button fas fa-square-root-alt"></button>
         <button @click="set_operation('/')" class="calc__button">/</button>
-        <button @click="set_operation('*')" class="calc__button">*</button>
         <button @click="insert('7')" class="calc__button">7</button>
         <button @click="insert('8')" class="calc__button">8</button>
         <button @click="insert('9')" class="calc__button">9</button>
-        <button @click="set_operation('-')" class="calc__button">-</button>
+        <button @click="set_operation('*')" class="calc__button">*</button>
         <button @click="insert('4')" class="calc__button">4</button>
         <button @click="insert('5')" class="calc__button">5</button>
         <button @click="insert('6')" class="calc__button">6</button>
-        <button @click="set_operation('+')" class="calc__button">+</button>
+        <button @click="set_operation('-')" class="calc__button">-</button>
         <button @click="insert('1')" class="calc__button">1</button>
         <button @click="insert('2')" class="calc__button">2</button>
         <button @click="insert('3')" class="calc__button">3</button>
-        <button @click="calc()" class="calc__button equals__button">=</button>
+        <button @click="set_operation('+')" class="calc__button">+</button>
         <button @click="negate()" class="calc__button">+/-</button>
         <button @click="insert('0')" class="calc__button">0</button>
         <button @click="insert('.')" class="calc__button">.</button>
+        <button @click="calc()" class="calc__button">=</button>
       </div>
     </div>
   </div>
@@ -115,7 +120,7 @@ export default {
 }
 
 .calc{
-  width: 231px;
+  width: 286px;
   margin: 0 auto;
   padding: 10px;
 }
@@ -148,11 +153,5 @@ export default {
 .calc__button:hover{
   cursor: pointer;
   background-color: #6f838d;
-}
-
-.equals__button{
-  grid-column-start: 4;
-  grid-row-start: 4;
-  grid-row-end: 6;
 }
 </style>
