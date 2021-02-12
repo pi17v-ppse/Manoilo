@@ -40,16 +40,27 @@ export default {
     return {
       result: '',
       operation: null,
-      operator_a: null,
-      operator_b: null
+      argument_a: null,
+      argument_b: null
     }
   },
   methods: {
+    /**
+     * Запоминает выбраный пользователем оператор и очищает поле ввода
+     * @param {string} operation один из возможных операторов (+, -, *, /)
+     */
     set_operation(operation){
       this.operation = operation;
-      this.operator_a = this.result;
+      this.argument_a = this.result;
       this.result = '';
     },
+    /**
+     * Производит вставку необходимого символа в input.
+     * Запрещает содержание двух точек.
+     * Редактирует вид числа при вводе в пустое поле точки.
+     * Запрещает ввод чисел начинающихся с нуля.
+     * @param {string} char_to_insert вводимый символ
+     */
     insert(char_to_insert){
       switch (char_to_insert){
         case '.':
@@ -71,57 +82,98 @@ export default {
           break;
       }
     },
+    /**
+     * Выполняет очистку поля input 
+     */
     clear(){
       this.result = '';
     },
+    /**
+     * Выполняет полную очистку поля input, введенных раннее аргументов и оператора
+     * @param {string} this.result - результат вычислений, текст содержащийся в input
+     * @param {string} this.operation - выбранный оператор (+, -, *, /).
+     * @param {string} this.argument_a - первый аргумент вводимый пользователем
+     * @param {string} this.argument_b - второй аргумент вводимый пользователем
+     */
     full_clear(){
       this.result = '';
       this.operation = null,
-      this.operator_a = null,
-      this.operator_b = null
+      this.argument_a = null,
+      this.argument_b = null
     },
+    /**
+     * Выполняет удаление последнего символа из поля отображения чисел.
+     * @param {string} this.result переменная связанная с полем Input и отображающая его содержимое.
+     */
     backspace(){
       this.result = this.result.slice(0, -1);
     },
+    /**
+     * Выполняет вычисления исходя из введенных аргументов и выбранного оператора.
+     * @param {string} this.result переменная в которую помещается результат и которая связана с данными в поле input.
+     * Также проверяет на неравенство null переменные аргументов.
+     */
     calc(){
-      if (this.result != ''){
-        this.operator_b = this.result;
+      if (this.result != '' && this.argument_a != null){
+        this.argument_b = this.result;
         switch (this.operation){
           case '+':
-            this.result = (parseFloat(this.operator_a) + parseFloat(this.operator_b)).toString();
+            this.result = (parseFloat(this.argument_a) + parseFloat(this.argument_b)).toString();
             break;
           case '-':
-            this.result = (parseFloat(this.operator_a) - parseFloat(this.operator_b)).toString();
+            this.result = (parseFloat(this.argument_a) - parseFloat(this.argument_b)).toString();
             break;
           case '*':
-            this.result = (parseFloat(this.operator_a) * parseFloat(this.operator_b)).toString();
+            this.result = (parseFloat(this.argument_a) * parseFloat(this.argument_b)).toString();
             break;
           case '/':
-            this.result = (parseFloat(this.operator_a) / parseFloat(this.operator_b)).toString();
+            this.result = (parseFloat(this.argument_a) / parseFloat(this.argument_b)).toString();
             break;
         }
       }
     },
+    /**
+     * Изменяет знак введенного числа на противоположный
+     * Результат помещается в поле для ввода
+     */
     negate(){
       if (this.result != '')
         this.result = (parseFloat(this.result) * -1).toString();
     },
+    /**
+     * Возводит введенное число во вторую степень
+     * Результат помещается в поле для ввода
+     */
     power(){
       if (this.result != '')
         this.result = (parseFloat(this.result) * parseFloat(this.result)).toString();
     },
+    /**
+     * Делит единицу на ввдеденное число
+     * Результат помещается в поле для ввода
+     */
     dividing(){
       if (this.result != '')
         this.result = (1 / parseFloat(this.result)).toString();
     },
+    /**
+     * Извлекает квадратный корень из введенного числа.
+     * Результат помещается в поле для ввода
+     */
     square(){
       if (this.result != '')
         this.result = Math.sqrt(parseFloat(this.result)).toString();
     },
+    /**
+     * Без использования какого либо оператора или с использованием операторов (*, /)
+     * преобразует число в процентный вид,
+     * в иных случаях вычисляет процент от введенного раннее аргумента.
+     * Результат помещается в поле для ввода
+     */
     percentage(){
       if (this.result != '')
         if (this.operation == '+' || this.operation == '-')
-          this.result = (parseFloat(this.operator_a) * (parseFloat(this.result) / 100)).toString();
+          this.result = (parseFloat(this.argument_a) * (parseFloat(this.result) / 100)).toString();
         else
           this.result = (parseFloat(this.result) / 100).toString();
     }
