@@ -4,23 +4,13 @@
       <input v-model="result" class="text" placeholder="0" readonly>
 
       <div class="buttons">
-<<<<<<< HEAD
-        <button class="calc__button">%</button>
-        <button @click="clear()" class="calc__button">CE</button>
+        <button @click="percentage()" class="calc__button">%</button>
+        <button @click="full_clear()" class="calc__button">CE</button>
         <button @click="clear()" class="calc__button">C</button>
         <button @click="backspace()" class="calc__button fas fa-backspace"></button>
         <button @click="dividing()" class="calc__button">1/x</button>
         <button @click="power()" class="calc__button">pow</button>
         <button @click="square()" class="calc__button fas fa-square-root-alt"></button>
-=======
-        <button @click="percentage()" class="calc__button">%</button>
-        <button @click="full_clear()" class="calc__button">CE</button>
-        <button @click="clear()" class="calc__button">C</button>
-        <button @click="backspace()" class="calc__button fas fa-backspace"></button>
-        <button class="calc__button">1/x</button>
-        <button class="calc__button">pow</button>
-        <button class="calc__button fas fa-square-root-alt"></button>
->>>>>>> lab3.2
         <button @click="set_operation('/')" class="calc__button">/</button>
         <button @click="insert('7')" class="calc__button">7</button>
         <button @click="insert('8')" class="calc__button">8</button>
@@ -116,7 +106,6 @@ export default {
       if (this.result != '')
         this.result = (parseFloat(this.result) * -1).toString();
     },
-<<<<<<< HEAD
     power(){
       if (this.result != '')
         this.result = (parseFloat(this.result) * parseFloat(this.result)).toString();
@@ -128,14 +117,13 @@ export default {
     square(){
       if (this.result != '')
         this.result = Math.sqrt(parseFloat(this.result)).toString();
-=======
+    },
     percentage(){
       if (this.result != '')
         if (this.operation == '+' || this.operation == '-')
           this.result = (parseFloat(this.operator_a) * (parseFloat(this.result) / 100)).toString();
         else
           this.result = (parseFloat(this.result) / 100).toString();
->>>>>>> lab3.2
     }
   }
 }
