@@ -5,7 +5,7 @@
 
       <div class="buttons">
         <button @click="percentage()" class="calc__button">%</button>
-        <button @click="clear()" class="calc__button">CE</button>
+        <button @click="full_clear()" class="calc__button">CE</button>
         <button @click="clear()" class="calc__button">C</button>
         <button @click="backspace()" class="calc__button fas fa-backspace"></button>
         <button class="calc__button">1/x</button>
@@ -73,6 +73,12 @@ export default {
     },
     clear(){
       this.result = '';
+    },
+    full_clear(){
+      this.result = '';
+      this.operation = null,
+      this.operator_a = null,
+      this.operator_b = null
     },
     backspace(){
       this.result = this.result.slice(0, -1);
