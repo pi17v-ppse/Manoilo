@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter lang="ru">                                        
+    <title>Calculator</title>
+    <sect1>
+        <title>Краткое описание</title>
+        <para>
+            Программа Calculator, предназначенная для выполнения несложных вычислительных 
+            операций: сложения, вычитания, умножения и деления и т.д.
+        </para>
+        <para>
+            Интерфейс программы спроектирован таким образом, чтобы имитировать внешний 
+            вид реального калькулятора. Его «кнопки» можно нажимать мышкой.
+        </para>
+        <para>
+            На кнопках представлены следующие возможные операции:
+        </para>
+        <orderedlist>
+            <listitem>
+                <para>Операция сложения "+"</para>
+            </listitem>
+            <listitem>
+                <para>Операция вычитания "-"</para>
+            </listitem>
+            <listitem>
+                <para>Операция умножения "*"</para>
+            </listitem>
+            <listitem>
+                <para>Операция деления "/"</para>
+            </listitem>
+            <listitem>
+                <para>Операция возведения в квадрат "x^2"</para>
+            </listitem>
+            <listitem>
+                <para>Операция деления еденицы на число "1/x"</para>
+            </listitem>
+            <listitem>
+                <para>Операция вычисления квадратного корня "x^(1/2)"</para>
+            </listitem>
+            <listitem>
+                <para>Операция вычисления процента от числа "%"</para>
+            </listitem>
+        </orderedlist> 
+    </sect1>
+    <sect1>
+        <title>Скриншоты работы приложения</title>
+        <figure>
+            <title>Интерфейс пользователя</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/interface.jpg" />
+                </imageobject>
+            </mediaobject>
+        </figure>
+        
+        <figure>
+            <title>Осуществление вычислений</title>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="images/example.jpg" />
+                </imageobject>
+            </mediaobject>
+        </figure>
+    </sect1>
+    
+    <sect1>
+        <title>Примеры разработанного кода</title>
+        <para>
+            Для разработки пользоательского интерфейса использовался язык разметки HTML и таблица стилей CSS.
+            Пример разметки приведен ниже.
+        </para>
+        
+        <example>
+            <title>Пример разметки пользовательского интерфейса</title>
+            
+            <para>
+                <programlisting>
+&lt;div class="container">
+    &lt;div class="calc">
+        &lt;input v-model="result" class="text" placeholder="0" readonly>
+                      
+        &lt;div class="buttons">
+        &lt;button @click="percentage()" class="calc__button">%&lt;/button>
+        &lt;button @click="full_clear()" class="calc__button">CE&lt;/button>
+        &lt;button @click="clear()" class="calc__button">C&lt;/button>
+        &lt;button @click="backspace()" class="calc__button fas fa-backspace">&lt;/button>
+        &lt;button @click="dividing()" class="calc__button">1/x&lt;/button>
+        &lt;button @click="power()" class="calc__button">pow&lt;/button>
+        &lt;button @click="square()" class="calc__button fas fa-square-root-alt">&lt;/button>
+        &lt;button @click="set_operation('/')" class="calc__button">/&lt;/button>
+        &lt;button @click="insert('7')" class="calc__button">7&lt;/button>
+        &lt;button @click="insert('8')" class="calc__button">8&lt;/button>
+        &lt;button @click="insert('9')" class="calc__button">9&lt;/button>
+        &lt;button @click="set_operation('*')" class="calc__button">*&lt;/button>
+        &lt;button @click="insert('4')" class="calc__button">4&lt;/button>
+        &lt;button @click="insert('5')" class="calc__button">5&lt;/button>
+        &lt;button @click="insert('6')" class="calc__button">6&lt;/button>
+        &lt;button @click="set_operation('-')" class="calc__button">-&lt;/button>
+        &lt;button @click="insert('1')" class="calc__button">1&lt;/button>
+        &lt;button @click="insert('2')" class="calc__button">2&lt;/button>
+        &lt;button @click="insert('3')" class="calc__button">3&lt;/button>
+        &lt;button @click="set_operation('+')" class="calc__button">+&lt;/button>
+        &lt;button @click="negate()" class="calc__button">+/-&lt;/button>
+        &lt;button @click="insert('0')" class="calc__button">0&lt;/button>
+        &lt;button @click="insert('.')" class="calc__button">.&lt;/button>
+        &lt;button @click="calc()" class="calc__button">=&lt;/button>
+    &lt;/div>
+  &lt;/div>
+&lt;/div>
+                 </programlisting>
+            </para>
+        </example>  
+        
+        <para>
+            Для реализации вычислений используется метод "Calc()", который использует введенные пользователем данные,
+            которые сохранены в строковые переменные.
+            Переменная "operation" содержить выбранную операцию (+, -, *, /), оператором "switch" происходит определение
+            операции и выполнение соответсвющих действий.
+        </para>
+        
+        <example>
+            <title>Метод для выполнения вычислений</title>
+            <para>
+                <programlisting>
+calc(){
+    if (this.result != ''  this.argument_a != null){
+        this.argument_b = this.result;
+        switch (this.operation){
+          case '+':
+            this.result = (parseFloat(this.argument_a) + parseFloat(this.argument_b)).toString();
+            break;
+          case '-':
+            this.result = (parseFloat(this.argument_a) - parseFloat(this.argument_b)).toString();
+            break;
+          case '*':
+            this.result = (parseFloat(this.argument_a) * parseFloat(this.argument_b)).toString();
+            break;
+          case '/':
+            this.result = (parseFloat(this.argument_a) / parseFloat(this.argument_b)).toString();
+            break;
+        }
+    }
+}
+                 </programlisting>
+                </para>
+        </example>  
+        
+        <para>
+            Для выполнения операций не требующих двух аргументов, используются отдельные функции, 
+            которые сразу преобразуют введенное число (возведение в квадрат, квадратный корень, процент, 1/x).
+        </para>
+        
+        <example>
+            <title>Метод для вычисления процента числа</title>
+            <para>
+                <programlisting>
+percentage(){
+  if (this.result != '')
+    if (this.operation == '+' || this.operation == '-')
+      this.result = (parseFloat(this.argument_a) * (parseFloat(this.result) / 100)).toString();
+    else
+      this.result = (parseFloat(this.result) / 100).toString();
+}
+                 </programlisting>
+            </para>
+        </example> 
+        
+        <note>
+            <para> 
+                Код приложения находится в свободном доступе и может быть найден в репозитории 
+                на гитхабе. 
+            </para>
+            <para>
+                <ulink url="https://github.com/pi17v-ppse/Manoilo"> Calculator </ulink>
+            </para>
+        </note>
+    </sect1>
+</chapter>
